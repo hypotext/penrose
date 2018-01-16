@@ -13,7 +13,7 @@ maintainer:          kqy@cs.cmu.edu
 -- copyright:
 -- category:
 build-type:          Simple
-extra-source-files:  ChangeLog.md, README.md
+extra-source-files:  ChangeLog.md, README.md, test/TestSuite.hs
 cabal-version:       >=1.10
 
 source-repository head
@@ -22,14 +22,15 @@ source-repository head
 
 executable penrose
   main-is:             Main.hs
-  other-modules:       Utils Server Style Substance Functions Runtime Shapes
+  default-language: Haskell2010
+  other-modules:       ShadowMain Utils Server Style Substance Functions Runtime Shapes Computation
   other-extensions:    AllowAmbiguousTypes, RankNTypes, UnicodeSyntax, NoMonomorphismRestriction, OverloadedStrings, DeriveGeneric, DuplicateRecordFields
   build-depends:       base                >= 4.9 && <4.10,
                        random              >= 1.1 && <1.2,
                        random-shuffle      >= 0.0.4 && < 0.1,
                        containers          >= 0.5 && <0.6,
                        gloss               >= 1.11 && <1.12,
-                       megaparsec          >= 5.3 && <5.4,
+                       megaparsec          >= 6.4 && < 6.5,
                        ad                  >= 4.3 && <4.4,
                        aeson               >= 1.2 && <1.3,
                        text                >= 1.2 && <1.3,
@@ -41,3 +42,30 @@ executable penrose
                        network              >= 2.6.3 && < 2.7
   hs-source-dirs:      src
   default-language:    Haskell2010
+
+Test-Suite penrose-testsuite
+  hs-source-dirs: src test
+  type: exitcode-stdio-1.0
+  main-is: TestSuite.hs
+  default-language: Haskell2010
+  other-modules:       ShadowMain Utils Server Style Substance Functions Runtime Shapes Computation
+                       Runtime.Tests ShadowMain.Tests
+  build-depends:       base                >= 4.9 && <4.10,
+                       random              >= 1.1 && <1.2,
+                       random-shuffle      >= 0.0.4 && < 0.1,
+                       containers          >= 0.5 && <0.6,
+                       gloss               >= 1.11 && <1.12,
+                       megaparsec          >= 6.4 && < 6.5,
+                       ad                  >= 4.3 && <4.4,
+                       aeson               >= 1.2 && <1.3,
+                       text                >= 1.2 && <1.3,
+                       websockets          >= 0.11 && <0.12,
+                       old-time            >= 1.1 && <1.2,
+                       pretty              >= 1.1.3 && < 1.2,
+                       extra               >= 1.6 && < 1.7,
+                       process             >= 1.4.3 && < 1.5,
+                       network              >= 2.6.3 && < 2.7,
+                       tasty,
+                       tasty-smallcheck,
+                       tasty-quickcheck,
+                       tasty-hunit
