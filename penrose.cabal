@@ -49,7 +49,8 @@ Test-Suite penrose-testsuite
   main-is: TestSuite.hs
   default-language: Haskell2010
   other-modules:       ShadowMain Utils Server Style Substance Functions Runtime Shapes Computation
-                       Runtime.Tests ShadowMain.Tests
+                       Runtime.Tests ShadowMain.Tests Computation.Tests Functions.Tests Server.Tests
+                       Shapes.Tests Style.Tests Substance.Tests Utils.Tests
   build-depends:       base                >= 4.9 && <4.10,
                        random              >= 1.1 && <1.2,
                        random-shuffle      >= 0.0.4 && < 0.1,

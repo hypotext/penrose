@@ -8,7 +8,7 @@ import Test.Tasty.HUnit
 import Runtime
 
 tests :: TestTree
-tests = testGroup "Tests" [properties, unitTests]
+tests = testGroup "Runtime tests" [properties, unitTests]
 
 properties :: TestTree
 properties = testGroup "Properties" [scProps, qcProps]
@@ -21,6 +21,6 @@ qcProps = testGroup "(checked by QuickCheck)"
 
 -- Module: topic: function: property
 unitTests = testGroup "Unit tests" 
-          [ testCase "Runtime: packing: yoink: list length" $
+          [ testCase "Packing: yoink: list length" $
             yoink [Fix, Vary, Fix] [1, 2, 3] [4, 5] @?= ([1, 4, 2], [3], [5])
           ]
